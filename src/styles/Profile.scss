@@ -1,0 +1,146 @@
+@import "./scss/colors";
+
+
+/*
+    <div className="profile-container">
+      <div className="navigation-menu">
+      </div>
+      <main>
+            <div className="rendered-content">
+            </div>
+            <div className="profile-info">
+            </div>
+        main
+    div
+
+
+  
+    
+*/
+
+
+.profile-container {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+
+    .navigation-menu::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+    }
+
+    .navigation-menu {
+        width: 100%;
+        overflow-x: scroll;
+        scrollbar-width: none;
+        display: flex;
+        gap: 5%;
+        justify-content: center;
+        margin-bottom: 2rem;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-bottom: 1px solid $soft-text-color;
+        border-left: 1px solid $soft-text-color;
+        border-right: 1px solid $soft-text-color;  
+
+        li {
+            cursor: pointer;
+            text-decoration: none;
+            list-style: none;
+            border-left: 1px solid rgba(255, 0, 0, 0);
+            border-right: 1px solid rgba(255, 0, 0, 0);
+            padding: 0.5rem 1.5rem;
+           
+        }
+        li:hover {
+            border-left: 1px solid $soft-text-color;
+            border-right: 1px solid $soft-text-color;
+            background-color: $background-color;
+        }
+
+        li.clicked {
+            background-color: $background-color;
+            border-top: 1px solid $background-color;         
+        }
+    }
+    @media (max-width: 570px) {
+
+        .navigation-menu {
+          justify-content: flex-start;
+        }
+      }
+
+    main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        width: 90%;
+        .rendered-content {
+            border: 1px solid $soft-text-color;
+            background-color: #1d2e34;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem 0;
+
+            h3{
+                margin: 1rem 0;
+                font-weight: 600;
+            }
+
+            .comment {
+                width: 80%;
+            }
+        }
+        .profile-info {
+            display: flex;
+            justify-content: center;
+
+            .profile-card {
+                border: 1px solid  $soft-text-color;
+                background-color: $background-color;
+                border-radius: 15px;
+                height: fit-content;
+                margin: 5em 2em;
+                padding: 1em 2em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: sticky;
+                top: 150px;
+                .username {
+                    color: $text-color;
+                    font-size: 2em;
+                }
+
+                table {
+                    margin: 2em 0;
+                    tr {
+                        border: 1px solid red;
+                    }
+                }
+
+
+            }
+        }
+    }
+    @media (max-width: 768px) {
+
+        main {
+            display: flex;
+            flex-direction: column-reverse;
+            .profile-info{
+               display: none;
+            }
+        }
+      }
+}
+
+
+
+

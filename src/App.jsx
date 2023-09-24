@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react";
+import useUserStore from "./zustand/userStore";
+import { auth, fetchUserDataFromFirebase } from "./firebase";
+import { useLocation, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import Profile from "./pages/Profile";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import ExpandedConfession from "./pages/ExpandedConfession";
+import ChooseUsername from "./pages/ChooseUsername";
+import "./App.scss";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { getUser } = useUserStore();
+
+  const setUser = useUserStore((state) => state.setUser); // Get the setUser function
+  const location = useLocation();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      try {
+        if (user) {
+          const userData = await fetchUserDataFromFirebase(user.uid);
+          setUser(userData);
+        } else {
+          getUser(null);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [location]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <Navbar />
+      <div className="content">
+        <Routes>
+          <Route exact path="/" element={<Home location={location} />} />
+          <Route path="/posts/:id" element={<ExpandedConfession />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/set-username" element={<ChooseUsername />} />
+          <Route path="/user/:username" element={<Profile />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

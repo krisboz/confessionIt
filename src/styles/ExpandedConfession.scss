@@ -1,0 +1,161 @@
+@import "./scss/colors";
+@import "./scss/fontSizes";
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100;200;300;400;500;600;700;800&family=Tourney:wght@100;200;300;400;600&display=swap');
+
+
+
+.post-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0 3rem 0;
+
+}
+
+
+
+
+.expanded-calls-to-action {
+    display: flex;
+    margin: 5px 15px;
+
+    .reply-container{
+        display: flex;
+        align-items: flex-end;
+        #reply-btn {
+            border: 1px solid $background-color;
+            font-size: 16px;
+            background-color: $background-color;
+            color: $soft-text-color;
+            border-radius: 15px;
+            padding: 5px 15px;
+            transition: 0.3s;
+        }
+        #reply-btn:hover {
+            border: 1px solid white;
+        }
+    
+    }
+
+    
+}
+
+
+
+.expanded-container {
+    border: 1px solid rgb(201, 199, 199);
+    display: grid;
+    background-color: $background-color;
+    margin: 1% 0;
+    padding: 3px 15px;
+    border-radius: 10px;
+    width: 100%;
+    overflow:visible;
+    position: relative;
+
+}
+
+.confession {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .info-container{
+        width: 100%;
+        .info{
+            color: $soft-text-color;
+            font-size: $small-font-size;
+            display: flex;
+            gap: 10px;
+            padding: 0.3em 0;
+            a{
+                color: $soft-text-color;
+                cursor: pointer;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+    
+            a:hover {
+                color: rgb(51, 63, 120);
+            }
+    }
+
+    }
+
+    .confession-content {
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1em 0;
+        align-items: start;
+        
+
+        .title{
+            font-size: $title-font-size;
+            font-weight: normal;
+        }
+
+        .content{
+            word-break: break-word;
+            font-size:$content-font-size;
+            white-space: pre-line;
+            display: flex;
+            padding: 0;
+        }
+}
+}
+
+
+.post-reply-form {
+    width: 80%;
+    form {
+        border: 1px solid $soft-text-color;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        box-sizing: border-box;
+        background-color: $background-color;
+        
+        textarea{
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            width: 100%;
+            padding: 5px 15px;
+            background-color: $background-color;
+            margin: 0;
+            box-sizing: border-box;
+            color: white;
+            font-size: 14px;
+            border: none;
+            resize: none;
+            transition: 0.3s;
+        }
+
+        textarea:focus {
+            outline: 1px solid $text-color;
+            
+        }
+        button {
+            width: fit-content;
+            margin: 2px 15px;
+            border: 1px solid $background-color;
+            background-color: $background-color;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+           border: 1px solid $text-color;
+        }
+    }
+}
+
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}

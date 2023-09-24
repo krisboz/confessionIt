@@ -1,0 +1,53 @@
+@import "./scss/colors";
+
+
+//approval container in confession : GOTO
+//approval container in expanded confession : GOTO 21
+
+.approval {
+    //Height sets the thickness of the bar
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+
+    p{
+        font-size: large;
+    }
+
+    div{
+        position: relative;
+        display: inline-block;
+        width: 0rem;
+        height: 0.73rem;
+
+        border-radius: 15px;
+        border: 1px solid $background-color;
+        background: rgb(12,219,67);
+        transition: 0.5s;
+
+        .tooltip-text{
+            visibility: hidden;
+            width: fit-content;
+            font-size: 12px;
+            background-color: $background-color;
+            color: $soft-text-color;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px 0;
+            top: 15px;
+            left:50%;
+            position: absolute;
+            border: 1px solid $soft-text-color;
+            z-index: 9;
+        }
+
+    }
+    div:hover{
+        border: 1px solid #417386;
+    }
+
+    div:hover .tooltip-text {
+        visibility: visible;
+    }
+}

@@ -1,0 +1,90 @@
+@import "./scss/colors";
+@import "./scss/fontSizes";
+
+.navbar{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    background-color: $background-color;
+    height: 3rem;
+    padding: 0px 7%;
+    overflow: hidden;
+    align-items: center;
+    position: sticky;
+    z-index: 2;
+    top: 0;
+
+    .user-display>a {
+        font-size: 0.8rem;
+        color: $text-color;
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+    }
+    .user-display>a:hover{
+        text-decoration: underline;
+    }
+    li {
+        text-decoration: none;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+
+        .sign-out-btn {
+            text-decoration: none;
+            color: $soft-text-color;
+            background:none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: end ;
+            box-sizing: border-box;
+        }
+
+        .sign-out-btn:hover{
+            color: $condemn-red;
+        }
+
+        .sign-in-btn{
+            color: white;
+            font-size: 0.7rem;
+            text-decoration: none;
+            padding: 0.2rem 0.9rem;
+            cursor: pointer;
+            border: 1px solid $soft-text-color;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .sign-in-btn:hover{
+            border: 1px solid $text-color;
+            box-shadow: $box-shadow-soft;
+            
+        }
+    }
+
+    li>a>img{
+        margin-top: 15px;
+        width: 150px;
+        object-fit: contain;
+        height: 49px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        object-fit: cover;
+    }
+    div{
+        display: flex;
+        font-size: 20px;
+        width: 25%;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3em;
+    }
+}
+
