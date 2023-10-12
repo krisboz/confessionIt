@@ -9,13 +9,8 @@ import "../styles/Confession.scss";
 import { FaComment } from "react-icons/fa";
 
 const Confession = ({ data }) => {
-  const [tempApproval, setTempApproval] = useState(false);
-  const [tempCondemnation, setTempCondemnation] = useState(false);
   const id = data.id;
   const navigate = useNavigate();
-
-  const user = useUserStore((state) => state.user);
-  const currentUser = auth.currentUser;
 
   const goToPost = (event) => {
     if (
@@ -24,65 +19,6 @@ const Confession = ({ data }) => {
     ) {
       navigate(`/posts/${id}`);
     }
-  };
-
-  const handleJudge = (event) => {
-    //judge = async (postId, judgeType, value)
-    if (!user) {
-      window.alert("You need to be signed in to judge");
-      return;
-    }
-    //approved or condemned
-    const judgeType = event.target.closest("button").id;
-
-    if (judgeType === "approved") {
-      if (user.condemned.includes(id)) {
-        judge(id, "condemned", -1);
-        updateUserData(currentUser.uid, id, "condemned", null);
-      }
-      if (user.approved.includes(id)) {
-        judge(id, "approved", -1);
-        updateUserData(currentUser.uid, id, "approved", null);
-      } else {
-        judge(id, "approved", 1);
-        updateUserData(currentUser.uid, id, "approved", null);
-        setTempApproval(true);
-      }
-    } else if (judgeType === "condemned") {
-      if (user.approved.includes(id)) {
-        judge(id, "approved", -1);
-        updateUserData(currentUser.uid, id, "approved", null);
-      }
-
-      if (user.condemned.includes(id)) {
-        judge(id, "condemned", -1);
-        updateUserData(currentUser.uid, id, "condemned", null);
-      } else {
-        judge(id, "condemned", 1);
-        updateUserData(currentUser.uid, id, "condemned", null);
-        setTempCondemnation(true);
-      }
-    }
-  };
-
-  const determineApproveBtnClass = () => {
-    if (user === null) {
-      return "approve-button";
-    } else if (tempApproval) {
-      return "approve-button clicked";
-    } else if (user.approved.includes(id)) {
-      return "approve-button clicked";
-    } else return "approve-button";
-  };
-
-  const determineCondemnBtnClass = () => {
-    if (user === null) {
-      return "condemn-button";
-    } else if (tempCondemnation) {
-      return "condemn-button clicked";
-    } else if (user.condemned.includes(id)) {
-      return "condemn-button clicked";
-    } else return "condemn-button";
   };
 
   const returnTextContent = (str) => {

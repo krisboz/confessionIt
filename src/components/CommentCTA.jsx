@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { addVote, updateUserData, auth } from "../firebase";
 import useUserStore from "../zustand/userStore";
+import useErrorStore from "../zustand/errorStore";
 
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 const CommentCTA = ({ commentObject }) => {
   const user = useUserStore((state) => state.user);
+  const { setError } = useErrorStore();
   const score = commentObject.score;
   const id = commentObject.id;
   const parentId = commentObject.parentId;
@@ -62,7 +64,7 @@ const CommentCTA = ({ commentObject }) => {
 
     //commObj -> user, score, id, uid
     if (!user) {
-      window.alert("You need to be logged in to vote");
+      setError("You need to be logged in to vote");
       return;
     } else if (user) {
       updateCommentArrays(voteType, id);

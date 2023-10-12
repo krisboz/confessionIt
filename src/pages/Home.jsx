@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useUserStore from "../zustand/userStore";
+import useErrorStore from "../zustand/errorStore";
 import { updateUserData, addPost, fetchAllPosts } from "../firebase";
 import { auth } from "../firebase/authentication";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ import "../styles/Home.scss";
 
 const Home = ({ location }) => {
   const user = useUserStore((state) => state.user);
+  const { setError } = useErrorStore();
 
   const navigate = useNavigate();
   const [confessions, setConfessions] = useState("loading");
@@ -50,8 +52,7 @@ const Home = ({ location }) => {
         console.log(error.message);
       }
     } else {
-      window.alert("You need to sign in to be able to post");
-      navigate("/sign-in");
+      setError("You need to be logged in to be able to post!");
     }
   };
 
@@ -66,7 +67,7 @@ const Home = ({ location }) => {
   const handleOpenPostForm = (event) => {
     if (user) {
       setPostFormOpen(!postFormOpen);
-    } else window.alert("You need to be logged in to vote");
+    } else setError("You need to be logged in to confess!");
   };
 
   const renderConfessions = () => {

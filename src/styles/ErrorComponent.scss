@@ -1,0 +1,69 @@
+@import "./scss/colors";
+
+.error-component {
+    border: 1px solid $soft-text-color;
+    background-color: $background-color;
+    border-radius: 15px;
+    padding: 1rem;
+    width: 50%;
+    position: fixed;
+    top: 10%;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 99;
+
+    animation: popIn 0.3s;
+
+    .btn-container {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        gap: 1rem;
+
+        a,
+        button {
+            border: none;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: .3rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        a:visited {
+            color: white;
+        }
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width:768px) {
+    .error-component {
+        width: 90%;
+        padding: 1rem .3rem;
+        font-size: .8rem;
+
+        .btn-container {
+
+            a,
+            button {
+                font-size: .7rem;
+                padding: .3rem .9rem;
+            }
+        }
+
+
+    }
+}

@@ -1,4 +1,5 @@
 import useUserStore from "../zustand/userStore";
+import useErrorStore from "../zustand/errorStore";
 import { useParams, Link } from "react-router-dom";
 import {
   fetchPost,
@@ -18,6 +19,7 @@ import calcPostTime from "../helpers/calcPostTime";
 
 const ExpandedConfession = () => {
   const { user, getUser } = useUserStore();
+  const { setError } = useErrorStore();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -104,8 +106,8 @@ const ExpandedConfession = () => {
         } catch (error) {
           console.log(error);
         }
-      } else window.alert("Comment empty");
-    } else window.alert("You need to sign in to comment");
+      } else setError("Don't leave the comment empty :)");
+    } else setError("You need to sign in to comment");
   };
 
   const getJudgeData = () => {

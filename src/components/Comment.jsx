@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useUserStore from "../zustand/userStore";
+import useErrorStore from "../zustand/errorStore";
 import { addReply, fetchReplies } from "../firebase";
 import { Link } from "react-router-dom";
 import calcPostTime from "../helpers/calcPostTime";
@@ -9,6 +10,7 @@ import "../styles/Comment.scss";
 
 const Comment = ({ comment }) => {
   const user = useUserStore((state) => state.user);
+  const { setError } = useErrorStore();
 
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [replyText, setReplyText] = useState("");
@@ -71,7 +73,7 @@ const Comment = ({ comment }) => {
       } catch (error) {
         console.log(error.message);
       }
-    } else window.alert("You need to be logged in to comment");
+    } else setError("You need to be logged in to comment");
   };
 
   const getDataForCTA = () => {

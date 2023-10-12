@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useUserStore from "./../zustand/userStore";
+import useErrorStore from "../zustand/errorStore";
 import { updateUserData, judge, auth } from "../firebase";
 import ApprovalBar from "./ApprovalBar";
 import { FaAngry, FaSmile } from "react-icons/fa";
@@ -8,6 +9,7 @@ import "../styles/PostJudgment.scss";
 const PostJudgment = ({ judgeData, type }) => {
   const id = judgeData.id;
   const user = useUserStore((state) => state.user);
+  const { setError } = useErrorStore();
   const currentUser = auth.currentUser;
 
   //id, user, approved, condemned
@@ -79,7 +81,7 @@ const PostJudgment = ({ judgeData, type }) => {
       judgeType === "approved" ? "condemned" : "approved";
 
     if (!user) {
-      window.alert("You need to be logged in to vote");
+      setError("You need to be logged in to vote");
       return;
     } else {
       updateJudgementArrays(judgeType);

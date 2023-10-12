@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineGoogle } from "react-icons/ai";
 import "../styles/SignUp.scss";
+import useErrorStore from "../zustand/errorStore";
 
 const SignUp = () => {
+  const { setError } = useErrorStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -15,7 +17,7 @@ const SignUp = () => {
   const handleSignUp = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      window.alert("Passwords don't match!");
+      setError("Passwords don't match!");
       return;
     }
 
