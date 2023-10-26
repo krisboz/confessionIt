@@ -1,5 +1,7 @@
 # confessionIt
 
+Live Preview: https://confessit-9ba45.web.app/
+
 Full stack (sort of) app inspired by the r/confessions subreddit
 Frontend is made with React, Firebase is the backend service and Zustand as the state management
 
