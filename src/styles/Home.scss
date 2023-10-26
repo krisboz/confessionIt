@@ -36,6 +36,12 @@
 
     .new-post-form {
 
+
+        h1 {
+            padding: 1.3rem 0 1rem 0;
+            font-weight: 300;
+        }
+
         form {
             display: flex;
             flex-direction: column;
@@ -47,7 +53,7 @@
             margin: 0 0 7rem 0;
 
             input {
-                background-color: $soft-text-color;
+                background-color: white;
                 font-size: 18px;
                 border: none;
                 padding: 5px 15px;
@@ -57,7 +63,7 @@
             }
 
             textarea {
-                background-color: $soft-text-color;
+                background-color: white;
                 width: 50%;
                 min-width: 300px;
                 border: none;
@@ -67,7 +73,7 @@
             }
 
             button {
-                background-color: darkgreen;
+                background: none;
                 cursor: pointer;
                 color: white;
                 border: 1px solid rgba(14, 14, 14, 0);
@@ -77,11 +83,11 @@
                 padding: 5px 15px;
                 border-radius: 15px;
                 transition: 0.5s;
+                border: 1px solid $soft-text-color;
+
             }
 
-            button:hover {
-                border: 1px solid $soft-text-color;
-            }
+
         }
     }
 }

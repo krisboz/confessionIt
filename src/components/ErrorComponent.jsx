@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/ErrorComponent.scss";
 import { Link } from "react-router-dom";
 import useErrorStore from "./../zustand/errorStore";
+import { MdOpenInNew } from "react-icons/md";
 
 const ErrorComponent = () => {
   const { errorMessage, clearError } = useErrorStore();
@@ -11,10 +12,6 @@ const ErrorComponent = () => {
       <div className="error-content">{errorMessage}</div>
 
       <div className="btn-container">
-        <Link to="/sign-in" onClick={clearError}>
-          Sign in
-        </Link>
-
         <button onClick={clearError}>Got it</button>
       </div>
     </div>

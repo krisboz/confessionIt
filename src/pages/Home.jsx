@@ -88,7 +88,7 @@ const Home = ({ location }) => {
     <div className="home">
       <div className="btn-cont">
         <button className="open-post-form-btn" onClick={handleOpenPostForm}>
-          Confess
+          {postFormOpen ? "Close Form" : "Confess"}
         </button>
       </div>
 

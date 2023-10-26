@@ -107,7 +107,7 @@ const ExpandedConfession = () => {
           console.log(error);
         }
       } else setError("Don't leave the comment empty :)");
-    } else setError("You need to sign in to comment");
+    } else setError("You need to be logged in to comment");
   };
 
   const getJudgeData = () => {
